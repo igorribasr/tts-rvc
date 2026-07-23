@@ -1,0 +1,154 @@
+{
+  "title": "Ivan Lima - Fatos Desconhecidos | (RVC v2) (300 Epochs)",
+  "author": {
+    "name": "sk1llz02",
+    "discordUserId": "1004101227212189816"
+  },
+  "md5": "4facd566ad3262d813c7a1fe6c6d69f1",
+  "uploadedAt": "2023-07-12T17:56:34.279Z",
+  "weightsLink": "https://www.weights.gg/models/clvlzcrge049xbq7588vd2fq3",
+  "id": "clvlzcrge049xbq7588vd2fq3",
+  "type": "v2",
+  "tags": [
+    "Português",
+    "RVC V2"
+  ],
+  "description": "Dataset: 9:59 | Feita por @ySk1llz\nTreinado por @ySk1llz\nTaxa de amostragem: 48k\nModelo: \nhttps://huggingface.co/ySk1llz/meus-modelos/resolve/main/ivan-lima.zip",
+  "samples": [],
+  "files": [
+    {
+      "name": "model.index",
+      "size": 91460739,
+      "md5": "8566e3911072109ca4c8329114d34341"
+    },
+    {
+      "name": "model.pth",
+      "size": 57588542,
+      "md5": "4facd566ad3262d813c7a1fe6c6d69f1"
+    }
+  ],
+  "torchMetadata": {
+    "config": {
+      "spec_channels": 1025,
+      "segment_size": 32,
+      "inter_channels": 192,
+      "hidden_channels": 192,
+      "filter_channels": 768,
+      "n_heads": 2,
+      "n_layers": 6,
+      "kernel_size": 3,
+      "p_dropout": 0,
+      "resblock": "1",
+      "resblock_kernel_sizes": [
+        3,
+        7,
+        11
+      ],
+      "resblock_dilation_sizes": [
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          1,
+          3,
+          5
+        ]
+      ],
+      "upsample_rates": [
+        12,
+        10,
+        2,
+        2
+      ],
+      "upsample_initial_channel": 512,
+      "upsample_kernel_sizes": [
+        24,
+        20,
+        4,
+        4
+      ],
+      "emb_channels": null,
+      "spk_embed_dim": 109,
+      "gin_channels": 256,
+      "sr": "48k"
+    },
+    "f0": 1,
+    "version": "v2",
+    "extra_info": {
+      "config": [
+        1025,
+        32,
+        192,
+        192,
+        768,
+        2,
+        6,
+        3,
+        0,
+        "1",
+        [
+          3,
+          7,
+          11
+        ],
+        [
+          [
+            1,
+            3,
+            5
+          ],
+          [
+            1,
+            3,
+            5
+          ],
+          [
+            1,
+            3,
+            5
+          ]
+        ],
+        [
+          12,
+          10,
+          2,
+          2
+        ],
+        512,
+        [
+          24,
+          20,
+          4,
+          4
+        ],
+        109,
+        256,
+        48000
+      ],
+      "info": "200epoch",
+      "sr": "48k",
+      "f0": 1,
+      "version": "v2"
+    },
+    "epochs": 0,
+    "step": 0,
+    "creation_date": null,
+    "model_hash": null
+  },
+  "url": "https://huggingface.co/ySk1llz/meus-modelos/resolve/main/ivan-lima.zip",
+  "urls": [
+    "https://huggingface.co/ySk1llz/meus-modelos/resolve/main/ivan-lima.zip"
+  ],
+  "epochs": 0,
+  "originalFileList": [
+    "added_IVF742_Flat_nprobe_1_ivan-lima_v2.index",
+    "ivan-lima_e200_s2200.pth"
+  ]
+}
