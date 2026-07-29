@@ -22,9 +22,10 @@ Qual desses detalhes mais te surpreendeu? Deixe sua opinião nos comentários e 
 # 2. Voz guia do Edge-TTS
 VOZ_EDGE = "pt-BR-AntonioNeural"
 
-# 3. Caminhos dos arquivos do Isaac Bardavid (Drive D:)
-MODELO_PTH = r"D:\Documents\Voice Models\ISAAC BARDAVID - Weights Model\isaac_bardavid_model.pth"
-ARQUIVO_INDEX = r"D:\Documents\Voice Models\ISAAC BARDAVID - Weights Model\isaac_bardavid_model.index"
+# 3. Caminhos dinâmicos dos arquivos do Isaac Bardavid dentro do repositório
+BASE_DIR_PROJECT = os.path.dirname(os.path.abspath(__file__))
+MODELO_PTH = os.path.join(BASE_DIR_PROJECT, "Voice Models", "ISAAC BARDAVID - Weights Model", "isaac_bardavid_model.pth")
+ARQUIVO_INDEX = os.path.join(BASE_DIR_PROJECT, "Voice Models", "ISAAC BARDAVID - Weights Model", "isaac_bardavid_model.index")
 
 # 4. Arquivos de saída na pasta C:\Users\Usuario
 TEMP_AUDIO_TTS = "temp_guia.mp3"

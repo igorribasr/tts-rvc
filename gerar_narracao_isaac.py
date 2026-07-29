@@ -29,19 +29,31 @@ from rvc_python.infer import RVCInference
 # ==========================================
 
 TEXTO = """
-E você já parou para pensar na diferença entre como Deus criou todo o universo... e como Ele criou você?
+Você já parou para pensar em como as três mulheres mais cruéis da Bíblia encontraram o seu terrível fim?
 
-Para formar as estrelas, os oceanos e galáxias infinitas, bastou uma única palavra. Ele apenas ordenou, e tudo passou a existir.
 
-Mas com o ser humano... o Criador fez algo completamente diferente.
+A primeira foi Jezabel, esposa do rei Acabe. Famosa por impor a idolatria e perseguir os profetas do Senhor, ela teve um desfecho tão dramático quanto sua vida:
 
-Deus não usou apenas a voz. Ele Se inclinou sobre a terra, esculpiu cada detalhe do nosso ser com as Suas próprias mãos e soprou diretamente em nós o Seu próprio fôlego de vida.
 
-Você não é um fruto do acaso; você carrega o sopro e o amor de Deus dentro de você.
+foi atirada do alto das muralhas e devorada por cães na rua! 
+
+
+A segunda foi Atália, filha de Jezabel. Determinada a usurpar o trono, ela mandou executar os próprios netos!
+
+
+Mas após seis anos de um reinado tirânico, seu fim chegou quando foi executada por ordem do sacerdote Joiada, na coroação do verdadeiro rei.
+
+
+A terceira foi Herodias, neta de Herodes. Famosa por seus casamentos escandalosos e por exigir a cabeça de João Batista num prato, ela caiu em desgraça, sendo banida e morrendo esquecida na ruína do exílio.
+
+
+O fim da crueldade nunca é vitorioso...
 """
 
 VOZ_KOKORO = 'pm_alex'  # Voz masculina em Português como guia (melhor para converter para Isaac Bardavid)
-MODELO_PTH = r"C:\Users\Usuario\tts-rvc\Voice Models\ISAAC BARDAVID - Weights Model\isaac_bardavid_model.pth"
+# Caminho dinâmico para o modelo RVC dentro do repositório
+BASE_DIR_PROJECT = os.path.dirname(os.path.abspath(__file__))
+MODELO_PTH = os.path.join(BASE_DIR_PROJECT, "Voice Models", "ISAAC BARDAVID - Weights Model", "isaac_bardavid_model.pth")
 
 # ==========================================
 # CONFIGURAÇÃO DE DESTINO DO ÁUDIO
