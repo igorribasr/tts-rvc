@@ -29,28 +29,34 @@ from rvc_python.infer import RVCInference
 # ==========================================
 
 TEXTO = """
-Você já parou para pensar em como as três mulheres mais cruéis da Bíblia encontraram o seu terrível fim?
+Porque no mundo espiritual... é assim que os demônios tentam dominar você.
 
 
-A primeira foi Jezabel, esposa do rei Acabe. Famosa por impor a idolatria e perseguir os profetas do Senhor, ela teve um desfecho tão dramático quanto sua vida:
+Satanás levou com ele um terço dos anjos... mas a Bíblia nunca disse que eles ficaram sem limites.
 
 
-foi atirada do alto das muralhas e devorada por cães na rua! 
+Apocalipse revela o dragão arrastando a terça parte das estrelas do céu, e depois mostra Satanás sendo lançado para baixo com os seus anjos.
 
 
-A segunda foi Atália, filha de Jezabel. Determinada a usurpar o trono, ela mandou executar os próprios netos!
+Esses anjos caídos são os demônios: espíritos rebeldes, em guerra contra Deus, contra a verdade e contra a alma humana.
 
 
-Mas após seis anos de um reinado tirânico, seu fim chegou quando foi executada por ordem do sacerdote Joiada, na coroação do verdadeiro rei.
+Primeiro, eles mentem: Jesus chamou Satanás de pai da mentira. Depois, eles tentam: até Cristo foi levado ao deserto para ser provado.
 
 
-A terceira foi Herodias, neta de Herodes. Famosa por seus casamentos escandalosos e por exigir a cabeça de João Batista num prato, ela caiu em desgraça, sendo banida e morrendo esquecida na ruína do exílio.
+Eles também acusam, confundem, oprimem e cegam o entendimento para que as pessoas não vejam a luz do evangelho.
 
 
-O fim da crueldade nunca é vitorioso...
+Paulo ainda alertou sobre espíritos enganadores e doutrinas de demônios. Mas demônios são criaturas: eles são limitados, não sabem tudo e não estão em todos os lugares.
+
+
+Só Deus é onisciente e onipresente. E a sua maior proteção é revestir-se da armadura de Deus, firmar sua fé na Palavra e resistir ao mal, porque maior é O que está em você.
+
+
+Qual dessas ações espirituais mais te assustou? Engano, tentação ou opressão? Comente aqui e siga o Viva o Secreto.
 """
 
-VOZ_KOKORO = 'pm_alex'  # Voz masculina em Português como guia (melhor para converter para Isaac Bardavid)
+VOZ_KOKORO = 'pm_santa'  # Voz masculina em Português como guia (melhor para converter para Isaac Bardavid)
 # Caminho dinâmico para o modelo RVC dentro do repositório
 BASE_DIR_PROJECT = os.path.dirname(os.path.abspath(__file__))
 MODELO_PTH = os.path.join(BASE_DIR_PROJECT, "Voice Models", "ISAAC BARDAVID - Weights Model", "isaac_bardavid_model.pth")
@@ -59,8 +65,8 @@ MODELO_PTH = os.path.join(BASE_DIR_PROJECT, "Voice Models", "ISAAC BARDAVID - We
 # CONFIGURAÇÃO DE DESTINO DO ÁUDIO
 # ==========================================
 BASE_DIR = r"D:\Documents\YT Viva o Secreto"
-PASTA_NUMERO = "02"  # Altere para "02", "03", etc. a cada nova geração
-NOME_ARQUIVO = "narracao_.wav"
+PASTA_NUMERO = "08"  # Altere para "02", "03", etc. a cada nova geração
+NOME_ARQUIVO = "narracao.wav"
 
 TEMP_AUDIO_TTS = "temp_guia.wav"
 
@@ -77,7 +83,7 @@ def gerar_tts():
     generator = pipeline(
         TEXTO, 
         voice=VOZ_KOKORO, 
-        speed=1.0,
+        speed=0.9,
         split_pattern=r'\n+'
     )
     

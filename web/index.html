@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio de Narração & Clonagem de Voz | TTS-RVC</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        },
+                        accent: {
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#080711] text-slate-100 font-sans min-h-screen relative overflow-x-hidden antialiased selection:bg-purple-500 selection:text-white">
+
+    <!-- Velion-style Aurora Mesh Gradient Background -->
+    <div class="aurora-container">
+        <div class="aurora-blob aurora-blob-1"></div>
+        <div class="aurora-blob aurora-blob-2"></div>
+        <div class="aurora-blob aurora-blob-3"></div>
+        <div class="aurora-blob aurora-blob-4"></div>
+        <div class="absolute inset-0 bg-grid-pattern opacity-40"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#080711]/40 to-[#080711]"></div>
+    </div>
+
+    <!-- Container -->
+    <div class="relative z-10 max-w-5xl mx-auto px-4 py-8 md:py-12 flex flex-col min-h-screen">
+        
+        <!-- Header -->
+        <header class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 pb-6 border-b border-white/10">
+            <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-cyan-400 p-0.5 shadow-lg shadow-purple-500/30">
+                    <div class="w-full h-full bg-[#0d0c1d]/90 backdrop-blur-md rounded-[14px] flex items-center justify-center">
+                        <i data-lucide="sparkles" class="w-6 h-6 text-purple-300"></i>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-100 to-indigo-300">
+                        Studio de Narração RVC
+                    </h1>
+                    <p class="text-xs text-purple-200/60 font-medium">Clonagem de Voz & Síntese TTS (Kokoro + RVC Multi-Modelos)</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold backdrop-blur-md shadow-inner">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>Servidor Ativo</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Studio Form -->
+        <main class="space-y-6 flex-1">
+            
+            <!-- 1. Text Area Card -->
+            <section class="glass-card rounded-3xl p-6 relative overflow-hidden transition-all duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-300 font-bold text-sm shadow-inner">
+                            1
+                        </div>
+                        <h2 class="text-lg font-bold text-white tracking-wide">Texto da Narração</h2>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs text-purple-200/60 font-medium">
+                        <button type="button" id="btn-restore-default" class="text-purple-300/70 hover:text-purple-200 transition-colors flex items-center gap-1">
+                            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                            <span>Carregar Texto Padrão</span>
+                        </button>
+                        <span>•</span>
+                        <div><span id="char-count" class="text-white font-bold">0</span> caracteres</div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <textarea 
+                        id="narration-text" 
+                        rows="7"
+                        placeholder="Digite ou cole aqui o texto que será narrado..."
+                        class="w-full glass-input rounded-2xl p-4 text-slate-100 placeholder-slate-500 focus:outline-none transition-all font-sans text-base leading-relaxed resize-y"
+                    ></textarea>
+                </div>
+            </section>
+
+            <!-- 2. Voice Config & Kokoro Voice Catalog -->
+            <section class="glass-card rounded-3xl p-6 transition-all duration-300">
+                <div class="flex items-center justify-between cursor-pointer" id="voice-settings-toggle">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-xl bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center text-indigo-300 font-bold text-sm shadow-inner">
+                            2
+                        </div>
+                        <h2 class="text-lg font-bold text-white tracking-wide">Modelo RVC & Voz Guia Kokoro</h2>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-400 text-sm">
+                        <span id="selected-model-badge" class="text-xs px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-200 font-semibold backdrop-blur-md">Selecione o Modelo</span>
+                        <i data-lucide="chevron-down" id="voice-chevron" class="w-5 h-5 transition-transform text-purple-300"></i>
+                    </div>
+                </div>
+
+                <div id="voice-settings-content" class="mt-4 pt-4 border-t border-white/10 space-y-4">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Model Selection -->
+                        <div class="space-y-1.5 md:col-span-1">
+                            <label class="text-xs font-bold text-purple-200/80 uppercase tracking-wider">Modelo RVC</label>
+                            <select id="model-select" class="w-full glass-input rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none cursor-pointer">
+                                <option value="" disabled selected>Carregando modelos...</option>
+                            </select>
+                        </div>
+
+                        <!-- Kokoro Language Filter -->
+                        <div class="space-y-1.5 md:col-span-1">
+                            <label class="text-xs font-bold text-cyan-300 uppercase tracking-wider flex items-center gap-1">
+                                <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+                                <span>Filtro por Idioma (Kokoro)</span>
+                            </label>
+                            <select id="kokoro-lang-filter" class="w-full glass-input rounded-xl px-3.5 py-2.5 text-sm text-cyan-200 focus:outline-none cursor-pointer">
+                                <option value="all">🌍 Todos os Idiomas (54 Vozes)</option>
+                                <option value="p" selected>🇧🇷 Português (Brasil / Portugal)</option>
+                                <option value="a">🇺🇸 Inglês (Americano)</option>
+                                <option value="b">🇬🇧 Inglês (Britânico)</option>
+                                <option value="e">🇪🇸 Espanhol</option>
+                                <option value="f">🇫🇷 Francês</option>
+                                <option value="i">🇮🇹 Italiano</option>
+                                <option value="j">🇯🇵 Japonês</option>
+                                <option value="z">🇨🇳 Mandarim (Chinês)</option>
+                                <option value="h">🇮🇳 Hindi</option>
+                            </select>
+                        </div>
+
+                        <!-- Guide Voice Selection -->
+                        <div class="space-y-1.5 md:col-span-1">
+                            <label class="text-xs font-bold text-purple-200/80 uppercase tracking-wider flex items-center justify-between">
+                                <span>Voz Guia</span>
+                                <span id="voices-count-badge" class="text-[10px] text-purple-300/60 font-mono">4 vozes</span>
+                            </label>
+                            <select id="tts-voice-select" class="w-full glass-input rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none cursor-pointer">
+                                <!-- Dynamic options populated by JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Action Button -->
+            <div class="pt-2">
+                <button 
+                    type="button" 
+                    id="btn-generate"
+                    class="w-full group relative inline-flex items-center justify-center p-0.5 overflow-hidden rounded-2xl font-bold text-lg text-white shadow-2xl shadow-purple-600/30 hover:shadow-purple-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5 active:translate-y-0"
+                >
+                    <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-600 via-indigo-500 to-cyan-400 group-hover:from-purple-500 group-hover:to-cyan-300 transition-all duration-500"></span>
+                    <span class="relative w-full px-6 py-4 rounded-[14px] bg-[#0c0b1e]/60 backdrop-blur-md group-hover:bg-transparent transition-all flex items-center justify-center gap-3">
+                        <span id="btn-text-content" class="flex items-center gap-3">
+                            <i data-lucide="sparkles" class="w-6 h-6 fill-current text-purple-300 group-hover:text-white"></i>
+                            <span id="btn-generate-text" class="tracking-wide">Gerar Narração</span>
+                        </span>
+                        <span id="btn-spinner" class="hidden flex items-center gap-3">
+                            <svg class="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            <span id="process-status-text">Processando narração...</span>
+                        </span>
+                    </span>
+                </button>
+            </div>
+
+            <!-- Terminal Logs Panel -->
+            <section class="glass-card rounded-2xl p-4 font-mono text-xs">
+                <div class="flex items-center justify-between mb-2 text-purple-200/60 border-b border-white/10 pb-2">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="terminal" class="w-4 h-4 text-cyan-400"></i>
+                        <span class="font-semibold text-purple-100">Status de Processamento</span>
+                    </div>
+                    <button type="button" id="btn-clear-terminal" class="hover:text-white transition-colors" title="Limpar">
+                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                    </button>
+                </div>
+                <div id="terminal-logs" class="h-24 overflow-y-auto space-y-1 text-slate-300 pr-2 custom-scrollbar">
+                    <div class="text-purple-300/50">[PRONTO] Insira o texto e clique em Gerar para iniciar a narração.</div>
+                </div>
+            </section>
+
+            <!-- 3. Result & Download Card (Appears after completion) -->
+            <section id="result-card" class="hidden glass-card rounded-3xl p-6 border-purple-500/40 space-y-6 animate-fade-in">
+                
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-inner">
+                            <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Narração Concluída com Sucesso!</h3>
+                            <p class="text-xs text-purple-200/70">Ouça o resultado abaixo ou faça o download para a pasta desejada.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Audio Player -->
+                <div class="glass-input rounded-2xl p-4 space-y-4">
+                    <audio id="native-audio-element" class="hidden"></audio>
+                    
+                    <div class="flex items-center gap-4">
+                        <button type="button" id="play-btn" class="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-500 hover:from-purple-500 hover:to-indigo-400 text-white flex items-center justify-center shadow-lg shadow-purple-500/30 transition-all">
+                            <i data-lucide="play" id="play-icon" class="w-6 h-6 fill-current"></i>
+                        </button>
+                        
+                        <div class="flex-1 space-y-1.5">
+                            <div class="flex justify-between text-xs font-mono text-purple-200/70">
+                                <span id="audio-time-current">0:00</span>
+                                <span id="audio-time-duration">0:00</span>
+                            </div>
+                            <div id="audio-progress-bar-container" class="h-2.5 bg-black/40 rounded-full cursor-pointer overflow-hidden relative border border-white/5">
+                                <div id="audio-progress-bar" class="h-full bg-gradient-to-r from-purple-500 via-indigo-400 to-cyan-400 w-0 rounded-full transition-all"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <button type="button" id="mute-btn" class="p-2 text-purple-300/70 hover:text-white transition-colors">
+                                <i data-lucide="volume-2" id="volume-icon" class="w-5 h-5"></i>
+                            </button>
+                            <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.9" class="w-20 accent-purple-400 cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prominent Download Button -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <a 
+                        id="btn-download-audio" 
+                        href="#" 
+                        download="narracao.wav" 
+                        class="flex-1 py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 font-extrabold text-center flex items-center justify-center gap-2.5 shadow-xl shadow-emerald-500/25 transition-all text-base transform hover:-translate-y-0.5"
+                    >
+                        <i data-lucide="download" class="w-5 h-5"></i>
+                        <span>Baixar Áudio (.wav)</span>
+                    </a>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center text-xs text-purple-200/40 py-4">
+            <p>Studio RVC • Sistema de Narração Automática (Kokoro TTS + RVC)</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
